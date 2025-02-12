@@ -169,3 +169,12 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+*.env
+*.wav
+*.mp3
+*.txt
+*.log
+audio/
+!messages/*
+consent.json
