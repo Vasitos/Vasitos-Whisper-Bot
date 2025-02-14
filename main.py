@@ -230,9 +230,9 @@ async def handle_consent_response(ctx: interactions.ComponentContext):
     await ctx.send("Tu preferencia ha sido guardada.", ephemeral=True)
 
 
-@interactions.Task.create(interactions.IntervalTrigger(seconds=15))
+@interactions.Task.create(interactions.IntervalTrigger(minutes=int(os.getenv("TRANSCRIPTION_INTERVAL", 15))))
 async def scheduled_transcription_task(ctx: interactions.SlashContext):
-    """Scheduled task to process recordings every 1 minutes."""
+    """Scheduled task to process recordings every specified interval."""
 
     if voice_state := voice_state_manager.get(ctx.guild_id):
         logger.info(f"Processing recordings in guild {ctx.guild_id}")
